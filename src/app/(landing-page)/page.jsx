@@ -1,9 +1,11 @@
 import React from 'react';
+import HomeJumbotron from './_partials/HomeJumbotron';
 
 const HomePage = () => {
   return (
     <>
-      <div className="font-bold">dada</div>
+      {/* Home Jumbotron */}
+      <HomeJumbotron />
     </>
   );
 };
