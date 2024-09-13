@@ -12,6 +12,11 @@ module.exports = withMT({
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        navy: '#1F316F',
+      },
+
+      fontFamily: {
+        lato: 'Lato, sans-serif',
       },
     },
   },
