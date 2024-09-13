@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { IoFootball, IoInformationCircle } from 'react-icons/io5';
 import { MdStadium } from 'react-icons/md';
 import { SiPremierleague } from 'react-icons/si';
+import ball_spin from '@/assets/images/ball-spin.png';
 
 const HomeJumbotron = () => {
   const MENU = [
@@ -35,15 +36,15 @@ const HomeJumbotron = () => {
   return (
     <>
       <div className="grid h-screen grid-cols-12 text-white font-lato cursor-custom">
-        <div className="flex justify-center col-span-4 bg-[#4F8DE2] items-center p-10">
-          <h1 className="absolute text-2xl font-bold top-10 left-10">
+        <div className="flex items-center justify-center p-10 col-span-full md:col-span-4 bg-navy">
+          <h1 className="absolute hidden text-2xl font-bold top-10 left-10 md:block">
             TheFootball<span className="text-yellow-500">ROSTER</span>
           </h1>
-          <div className="flex flex-col gap-3">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-1 ">
             {MENU.map((menu, index) => (
               <div key={index}>
                 <Link href={menu.href}>
-                  <Card className="flex flex-row items-center gap-2 px-10 py-2 text-sm font-medium text-black duration-200 bg-yellow-500 rounded-full shadow-xl hover:bg-yellow-600 cursor-custom">
+                  <Card className="flex flex-row items-center gap-2 px-10 py-2 text-sm font-medium text-black duration-300 bg-yellow-500 rounded-full shadow-xl hover:bg-blue-600 hover:text-yellow-500 cursor-custom">
                     <span>{menu.icon}</span>
                     <span>{menu.menu}</span>
                   </Card>
@@ -51,13 +52,22 @@ const HomeJumbotron = () => {
               </div>
             ))}
           </div>
+          <div className="absolute bottom-10 left-10">
+            <Image
+              src={ball_spin}
+              alt="Ball Spinner"
+              width={1024}
+              height={1024}
+              className="size-10 animate-spin"
+            />
+          </div>
         </div>
-        <div className="flex flex-col items-start justify-center col-span-8 bg-navy gap-y-2">
+        <div className="flex flex-col items-start justify-center bg-black col-span-full md:col-span-8 gap-y-2">
           <div className="relative w-full h-screen">
             <Image
               src={stadium}
               alt="Stadium"
-              className="object-cover w-full h-full opacity-15"
+              className="object-cover w-full h-full opacity-40"
               layout="fill"
               priority
             />
