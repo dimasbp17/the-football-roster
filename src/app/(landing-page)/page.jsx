@@ -7,7 +7,7 @@ import Navbar from './_partials/Navbar';
 const HomePage = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       {/* Home Jumbotron */}
       <HomeJumbotron />
     </>

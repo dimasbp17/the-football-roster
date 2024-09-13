@@ -18,6 +18,10 @@ module.exports = withMT({
       fontFamily: {
         lato: 'Lato, sans-serif',
       },
+
+      cursor: {
+        custom: 'url(/assets/images/ball.png), auto', // Tambahkan kursor kustom
+      },
     },
   },
   plugins: [],

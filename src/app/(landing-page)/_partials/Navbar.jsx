@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { IoClose, IoMenu } from 'react-icons/io5';
 
@@ -65,28 +66,28 @@ const Navbar = () => {
                 isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
               }`}
             >
-              <li>
+              <Link href={'/'}>
                 <button
                   onClick={() => scroolToSection('home')}
                   className={activeSection === 'home' ? 'text-yellow-500' : ''}
                 >
                   Home
                 </button>
-              </li>
-              <li>
+              </Link>
+              <Link href={'/clubs'}>
                 <button
                   onClick={() => scroolToSection('about')}
                   className={activeSection === 'about' ? 'text-yellow-500' : ''}
                 >
-                  About
+                  Clubs
                 </button>
-              </li>
+              </Link>
               <li>
                 <button
                   onClick={() => scroolToSection('skill')}
                   className={activeSection === 'skill' ? 'text-yellow-500' : ''}
                 >
-                  Skill
+                  Leagues & Cups
                 </button>
               </li>
               <li>
@@ -96,7 +97,7 @@ const Navbar = () => {
                     activeSection === 'project' ? 'text-yellow-500' : ''
                   }
                 >
-                  Project
+                  Score
                 </button>
               </li>
             </ul>
