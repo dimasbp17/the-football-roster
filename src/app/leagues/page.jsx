@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card } from '@material-tailwind/react';
+import { Button, Card } from '@material-tailwind/react';
 import Image from 'next/image';
 import Loading from '@/components/Loading';
 import Link from 'next/link';
@@ -13,6 +13,7 @@ const League = () => {
   const [leagues, setLeagues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [visibleLeagues, setVisibleLeagues] = useState(10);
 
   useEffect(() => {
     const fetchLeagues = async () => {
@@ -41,11 +42,15 @@ const League = () => {
     league.strLeague.toLowerCase().includes(searchQuery.toLocaleLowerCase())
   );
 
+  const showMoreLeagues = () => {
+    setVisibleLeagues((prev) => prev + 10);
+  };
+
   return (
     <>
-      <div className="p-2 bg-[#F5F7F8] ">
-        <Card className="flex flex-row items-center justify-between px-5 py-10 mb-5 text-black border">
-          <h1 className="text-lg font-bold">All Leagues</h1>
+      <div className="p-2 bg-[#F5F7F8] h-full">
+        <Card className="flex flex-row items-center justify-between px-5 py-10 mb-5 text-white bg-navy">
+          <h1 className="text-xl font-bold">All Leagues</h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
         </Card>
         {loading ? (
@@ -55,34 +60,48 @@ const League = () => {
         ) : (
           <>
             {filteredLeaugues.length > 0 ? (
-              <Card className="grid w-full grid-cols-5 gap-3 p-3 border">
-                {filteredLeaugues.map((league) => (
-                  <div key={league.idLeague}>
-                    <Link href={'/'}>
-                      <Card className="p-3 text-white border bg-navy">
-                        <div>
-                          <Image
-                            src={league_logo[league.idLeague]}
-                            alt={league.strLeague}
-                            width={1024}
-                            height={1024}
-                            className="w-[200px] h-[200px] object-cover"
-                          />
-                        </div>
-                        <div className="mt-2 truncate">
-                          <span className="font-semibold">
-                            {league.strLeague}
-                          </span>
-                          <hr />
-                          <span className="text-xs">
-                            {league.strLeagueAlternate || '-'}
-                          </span>
-                        </div>
-                      </Card>
-                    </Link>
+              <div>
+                <div className="grid w-full grid-cols-2 md:grid-cols-5 gap-4 p-3 bg-[#F5F7F8]">
+                  {filteredLeaugues.slice(0, visibleLeagues).map((league) => (
+                    <div key={league.idLeague}>
+                      <Link href={'/'}>
+                        <Card className="p-3 bg-white border text-navy">
+                          <div>
+                            <Image
+                              src={league_logo[league.idLeague]}
+                              alt={league.strLeague}
+                              width={1024}
+                              height={1024}
+                              className="object-cover h-[230px] rounded-lg"
+                            />
+                          </div>
+                          <div className="mt-3 truncate">
+                            <span className="font-semibold">
+                              {league.strLeague}
+                            </span>
+                            <hr className="border border-navy" />
+                            <span className="text-xs">
+                              {league.strLeagueAlternate || '-'}
+                            </span>
+                          </div>
+                        </Card>
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+
+                {visibleLeagues < filteredLeaugues.length && (
+                  <div className="flex justify-center my-5">
+                    <Button
+                      size="lg"
+                      className="capitalize bg-navy"
+                      onClick={showMoreLeagues}
+                    >
+                      Show More
+                    </Button>
                   </div>
-                ))}
-              </Card>
+                )}
+              </div>
             ) : (
               <div className="text-center text-gray-500">No Data</div>
             )}
