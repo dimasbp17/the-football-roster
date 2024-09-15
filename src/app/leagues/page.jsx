@@ -38,7 +38,7 @@ const League = () => {
     fetchLeagues();
   }, []);
 
-  const filteredLeaugues = leagues.filter((league) =>
+  const filteredLeagues = leagues.filter((league) =>
     league.strLeague.toLowerCase().includes(searchQuery.toLocaleLowerCase())
   );
 
@@ -54,17 +54,19 @@ const League = () => {
           <Search onSearch={(value) => setSearchQuery(value)} />
         </Card>
         {loading ? (
-          <div className="absolute top-1/2 right-1/2">
-            <Loading />
-          </div>
+          <Loading />
         ) : (
           <>
-            {filteredLeaugues.length > 0 ? (
+            {filteredLeagues.length > 0 ? (
               <div>
                 <div className="grid w-full grid-cols-2 md:grid-cols-5 gap-4 p-3 bg-[#F5F7F8]">
-                  {filteredLeaugues.slice(0, visibleLeagues).map((league) => (
+                  {filteredLeagues.slice(0, visibleLeagues).map((league) => (
                     <div key={league.idLeague}>
-                      <Link href={'/'}>
+                      <Link
+                        href={`/leagues/${encodeURIComponent(
+                          league.strLeague
+                        )}`}
+                      >
                         <Card className="p-3 bg-white border text-navy">
                           <div>
                             <Image
@@ -90,7 +92,7 @@ const League = () => {
                   ))}
                 </div>
 
-                {visibleLeagues < filteredLeaugues.length && (
+                {visibleLeagues < filteredLeagues.length && (
                   <div className="flex justify-center my-5">
                     <Button
                       size="lg"
@@ -103,7 +105,7 @@ const League = () => {
                 )}
               </div>
             ) : (
-              <div className="text-center text-gray-500">No Data</div>
+              <div className="text-center text-gray-500">No League</div>
             )}
           </>
         )}

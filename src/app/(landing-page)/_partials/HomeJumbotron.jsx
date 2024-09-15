@@ -9,6 +9,8 @@ import { IoFootball, IoInformationCircle } from 'react-icons/io5';
 import { MdStadium } from 'react-icons/md';
 import { SiPremierleague } from 'react-icons/si';
 import ball_spin from '@/assets/images/ball-spin.png';
+import field from '@/assets/svg/soccer-field.svg';
+import { PiListNumbersFill } from 'react-icons/pi';
 
 const HomeJumbotron = () => {
   const MENU = [
@@ -28,6 +30,11 @@ const HomeJumbotron = () => {
       href: '/leagues',
     },
     {
+      menu: 'Standing',
+      icon: <PiListNumbersFill />,
+      href: '/standing',
+    },
+    {
       menu: 'About',
       icon: <IoInformationCircle />,
       href: '/about',
@@ -37,6 +44,13 @@ const HomeJumbotron = () => {
     <>
       <div className="grid h-screen grid-cols-12 text-white font-lato cursor-custom">
         <div className="flex items-center justify-center p-10 col-span-full md:col-span-4 bg-navy">
+          <div className="absolute ">
+            <Image
+              src={field}
+              alt="Field"
+              className="opacity-10"
+            />
+          </div>
           <h1 className="absolute hidden text-2xl font-bold top-10 left-10 md:block">
             TheFootball<span className="text-yellow-500">ROSTER</span>
           </h1>

@@ -1,0 +1,17 @@
+/* styles.css */
+.card-wrapper {
+  position: relative;
+  overflow: hidden; /* Penting untuk memastikan efek gelombang tidak melampaui batas card */
+}
+
+.card-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -60px;
+  width: 100px; /* Sesuaikan ukuran sesuai kebutuhan */
+  height: 100px; /* Sesuaikan ukuran sesuai kebutuhan */
+  background: #000; /* Warna latar belakang untuk efek gelombang */
+  border-radius: 50%; /* Membuat bentuk bulat */
+  box-shadow: 0 0 0 10px #000; /* Opsi untuk menambahkan bayangan jika diperlukan */
+}
