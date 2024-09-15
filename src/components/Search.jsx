@@ -6,7 +6,7 @@ const Search = ({ onSearch }) => {
       <div>
         <input
           type="search"
-          className="px-5 py-2 border border-gray-500 rounded-full focus:border-gray-700 focus:outline-none"
+          className="px-5 py-2 text-black border border-gray-500 rounded-full focus:border-gray-700 focus:outline-none"
           placeholder="Search"
           onChange={(e) => onSearch(e.target.value)}
         />
