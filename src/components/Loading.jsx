@@ -5,7 +5,7 @@ import ball_spin from '@/assets/images/ball-spin.png';
 const Loading = () => {
   return (
     <>
-      <div className="absolute top-1/2 right-1/2">
+      <div className="inset-0 flex items-center justify-center">
         <Image
           src={ball_spin}
           alt="Ball Spinner"

@@ -16,6 +16,14 @@ const league_logo = {
   4347: '/assets/images/swedish.png',
   4350: '/assets/svg/mexican.svg',
   4351: '/assets/images/brazilian.png',
+  4354: '/assets/images/ukraina.png',
+  4355: '/assets/images/russian.png',
+  4356: '/assets/images/australian.png',
+  4358: '/assets/svg/norwegia.svg',
+  4359: '/assets/svg/cina.svg',
+  4394: '/assets/images/italia-b.png',
+  4395: '/assets/svg/scottish-championship.svg',
+  4396: '/assets/images/inggris-liga-1.png',
 };
 
 export default league_logo;

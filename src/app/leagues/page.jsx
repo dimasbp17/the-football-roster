@@ -48,13 +48,15 @@ const League = () => {
 
   return (
     <>
-      <div className="p-2 bg-[#F5F7F8] h-full">
+      <div className="p-2 bg-[#F5F7F8] h-full min-h-screen">
         <Card className="flex flex-row items-center justify-between px-5 py-10 mb-5 text-white bg-navy">
           <h1 className="text-xl font-bold">All Leagues</h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
         </Card>
         {loading ? (
-          <Loading />
+          <div className="">
+            <Loading />
+          </div>
         ) : (
           <>
             {filteredLeagues.length > 0 ? (
