@@ -51,7 +51,7 @@ const StandingPage = () => {
     }
   }, [idLeague, selectSeason]);
 
-  const TABLE_HEAD = ['Club', 'P', 'W', 'D', 'L', 'GM', 'GK', 'SG', 'Poin'];
+  const TABLE_HEAD = ['Club', 'P', 'W', 'D', 'L', 'GI', 'GO', 'GD', 'Points'];
   return (
     <>
       <div className="w-full p-2">
