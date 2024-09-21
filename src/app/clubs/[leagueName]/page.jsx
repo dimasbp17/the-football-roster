@@ -50,8 +50,8 @@ const LeagueTeams = () => {
   return (
     <>
       <div className="w-full p-2">
-        <Card className="flex flex-row items-center justify-between px-5 py-10 mb-5 text-white bg-navy">
-          <h1 className="text-xl font-bold">
+        <Card className="flex flex-col px-5 py-10 mb-5 text-white lg:items-center lg:justify-between lg:flex-row bg-navy">
+          <h1 className="mb-2 text-xl font-bold lg:mb-0">
             Team from the {decodedLeagueName}
           </h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
