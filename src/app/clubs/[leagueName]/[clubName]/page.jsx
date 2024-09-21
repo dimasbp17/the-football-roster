@@ -63,9 +63,9 @@ const ClubDetail = () => {
                 className="w-full object-cover h-[50vh]"
               />
             </section>
-            <div className="w-full">
+            <div className="w-full p-4">
               <div className="grid grid-cols-12 my-5">
-                <div className="flex items-center justify-center col-span-3">
+                <div className="flex items-center justify-center col-span-full lg:col-span-3">
                   <Image
                     src={club.strBadge}
                     alt="Logo"
@@ -75,7 +75,7 @@ const ClubDetail = () => {
                   />
                 </div>
 
-                <div className="flex flex-col col-span-4 gap-1 font-semibold">
+                <div className="flex flex-col gap-1 font-semibold col-span-full lg:col-span-4">
                   <h1 className="mb-2 text-3xl font-bold">{club.strTeam}</h1>
 
                   <div className="flex items-center gap-2">
@@ -95,7 +95,7 @@ const ClubDetail = () => {
                   </div>
                 </div>
 
-                <div className="col-span-3 ">
+                <div className="col-span-full lg:col-span-3 ">
                   <Image
                     src={club.strEquipment}
                     alt={`Logo, ${club.strTeam}`}
@@ -105,7 +105,7 @@ const ClubDetail = () => {
                   />
                 </div>
               </div>
-              <div className="mx-10 my-5">
+              <div className="my-5 lg:mx-10">
                 <h1 className="text-xl font-bold">Description</h1>
                 <div className="text-justify">{club.strDescriptionEN}</div>
               </div>
