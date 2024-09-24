@@ -55,7 +55,7 @@ const StandingPage = () => {
   return (
     <>
       <div className="w-full p-2">
-        <Card className="flex flex-row items-center justify-between px-5 py-10 text-white bg-navy">
+        <Card className="flex flex-col px-5 py-10 mb-5 text-white lg:items-center lg:justify-between lg:flex-row bg-navy">
           <h1 className="text-xl font-bold">Club Standings</h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
         </Card>
@@ -76,68 +76,70 @@ const StandingPage = () => {
             ))}
           </Select>
         </div>
-        <table className="w-full text-left table-auto min-w-max">
-          <thead>
-            <tr>
-              {TABLE_HEAD.map((head) => (
-                <th
-                  key={head}
-                  className="p-4 text-center text-white border-b border-blue-gray-100 bg-navy"
-                >
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal leading-none text-white"
+        <div className="overflow-x-auto">
+          <table className="w-full text-left table-auto min-w-max">
+            <thead>
+              <tr>
+                {TABLE_HEAD.map((head) => (
+                  <th
+                    key={head}
+                    className="p-4 text-center text-white border-b border-blue-gray-100 bg-navy"
                   >
-                    {head}
-                  </Typography>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          {loading ? (
-            <Loading />
-          ) : (
-            <tbody>
-              {clubStandings && clubStandings.length > 0 ? (
-                clubStandings.map((club) => (
-                  <tr
-                    key={club.idStanding}
-                    className="text-center border-b border-black"
-                  >
-                    <td className="flex items-center gap-2 p-4">
-                      {club.intRank}
-                      <Image
-                        src={club.strBadge}
-                        alt="ball"
-                        width={30}
-                        height={30}
-                      />
-                      {club.strTeam}
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal leading-none text-white"
+                    >
+                      {head}
+                    </Typography>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            {loading ? (
+              <Loading />
+            ) : (
+              <tbody>
+                {clubStandings && clubStandings.length > 0 ? (
+                  clubStandings.map((club) => (
+                    <tr
+                      key={club.idStanding}
+                      className="text-center border-b border-black"
+                    >
+                      <td className="flex items-center gap-2 p-4">
+                        {club.intRank}
+                        <Image
+                          src={club.strBadge}
+                          alt="ball"
+                          width={30}
+                          height={30}
+                        />
+                        {club.strTeam}
+                      </td>
+                      <td>{club.intPlayed}</td>
+                      <td>{club.intWin}</td>
+                      <td>{club.intDraw}</td>
+                      <td>{club.intLoss}</td>
+                      <td>{club.intGoalsFor}</td>
+                      <td>{club.intGoalsAgainst}</td>
+                      <td>{club.intGoalDifference}</td>
+                      <td className="font-bold">{club.intPoints}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      colSpan={TABLE_HEAD.length}
+                      className="text-center"
+                    >
+                      No standings available
                     </td>
-                    <td>{club.intPlayed}</td>
-                    <td>{club.intWin}</td>
-                    <td>{club.intDraw}</td>
-                    <td>{club.intLoss}</td>
-                    <td>{club.intGoalsFor}</td>
-                    <td>{club.intGoalsAgainst}</td>
-                    <td>{club.intGoalDifference}</td>
-                    <td className="font-bold">{club.intPoints}</td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td
-                    colSpan={TABLE_HEAD.length}
-                    className="text-center"
-                  >
-                    No standings available
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          )}
-        </table>
+                )}
+              </tbody>
+            )}
+          </table>
+        </div>
       </div>
     </>
   );

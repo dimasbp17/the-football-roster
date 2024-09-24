@@ -49,7 +49,7 @@ const Standing = () => {
   return (
     <>
       <div className="p-2 bg-[#F5F7F8] h-full">
-        <Card className="flex flex-row items-center justify-between px-5 py-10 mb-5 text-white bg-navy">
+        <Card className="flex flex-col px-5 py-10 mb-5 text-white lg:items-center lg:justify-between lg:flex-row bg-navy">
           <h1 className="text-xl font-bold">All Leagues</h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
         </Card>
@@ -59,7 +59,7 @@ const Standing = () => {
           <>
             {filteredLeagues.length > 0 ? (
               <div>
-                <div className="grid w-full grid-cols-2 md:grid-cols-2 gap-4 p-3 bg-[#F5F7F8]">
+                <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-4 p-3 bg-[#F5F7F8]">
                   {filteredLeagues.slice(0, visibleLeagues).map((league) => (
                     <div key={league.idLeague}>
                       <Link href={`/standing/${league.idLeague}`}>

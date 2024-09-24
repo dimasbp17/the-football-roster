@@ -11,7 +11,7 @@ const Loading = () => {
           alt="Ball Spinner"
           width={1024}
           height={1024}
-          className="size-20 animate-spin"
+          className="size-16 animate-spin"
         />
       </div>
     </>
