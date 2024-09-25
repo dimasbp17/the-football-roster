@@ -44,7 +44,7 @@ const HomeJumbotron = () => {
     <>
       <div className="grid h-screen grid-cols-12 text-white font-lato cursor-custom">
         <div className="flex items-center justify-center p-10 col-span-full md:col-span-4 bg-navy">
-          <div className="absolute ">
+          <div className="absolute hidden lg:block">
             <Image
               src={field}
               alt="Field"

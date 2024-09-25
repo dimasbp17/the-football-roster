@@ -16,6 +16,7 @@ const ClubDetail = () => {
   const { clubName } = useParams();
   const [clubs, setClubs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [readMore, setReadMore] = useState(false);
 
   useEffect(() => {
     const fetchClubsDetail = async () => {
@@ -95,7 +96,7 @@ const ClubDetail = () => {
                   </div>
                 </div>
 
-                <div className="col-span-full lg:col-span-3 ">
+                <div className="flex justify-center col-span-full lg:col-span-5">
                   <Image
                     src={club.strEquipment}
                     alt={`Logo, ${club.strTeam}`}
@@ -106,8 +107,18 @@ const ClubDetail = () => {
                 </div>
               </div>
               <div className="my-5 lg:mx-10">
-                <h1 className="text-xl font-bold">Description</h1>
-                <div className="text-justify">{club.strDescriptionEN}</div>
+                <h1 className="text-xl font-bold">Description Clubs</h1>
+                <div className="text-justify">
+                  {readMore
+                    ? club.strDescriptionEN
+                    : `${club.strDescriptionEN.slice(0, 500)}...`}
+                  <button
+                    onClick={() => setReadMore(!readMore)}
+                    className="ml-2 font-medium text-blue-500"
+                  >
+                    {readMore ? 'Read Less' : 'Read More'}
+                  </button>
+                </div>
               </div>
             </div>
           </>

@@ -51,7 +51,19 @@ const StandingPage = () => {
     }
   }, [idLeague, selectSeason]);
 
-  const TABLE_HEAD = ['Club', 'P', 'W', 'D', 'L', 'GI', 'GO', 'GD', 'Points'];
+  const TABLE_HEAD = [
+    'Rank',
+    'Club',
+    'P',
+    'W',
+    'D',
+    'L',
+    'GI',
+    'GO',
+    'GD',
+    'Points',
+    'Form',
+  ];
   return (
     <>
       <div className="w-full p-2">
@@ -106,8 +118,8 @@ const StandingPage = () => {
                       key={club.idStanding}
                       className="text-center border-b border-black"
                     >
+                      <td className="w-10">{club.intRank}</td>
                       <td className="flex items-center gap-2 p-4">
-                        {club.intRank}
                         <Image
                           src={club.strBadge}
                           alt="ball"
@@ -123,7 +135,27 @@ const StandingPage = () => {
                       <td>{club.intGoalsFor}</td>
                       <td>{club.intGoalsAgainst}</td>
                       <td>{club.intGoalDifference}</td>
+                      {/* <td>{club.strDescription}</td> */}
                       <td className="font-bold">{club.intPoints}</td>
+                      <td>
+                        <div className="flex justify-center gap-1">
+                          {club.strForm.split('').map((form, index) => {
+                            let bgColor = '';
+                            if (form === 'W') bgColor = 'bg-green-500';
+                            else if (form === 'D') bgColor = 'bg-gray-500';
+                            else if (form === 'L') bgColor = 'bg-red-500';
+
+                            return (
+                              <span
+                                key={index}
+                                className={`size-6 flex items-center justify-center text-white font-medium ${bgColor} rounded-md`}
+                              >
+                                {form}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      </td>
                     </tr>
                   ))
                 ) : (
@@ -139,6 +171,10 @@ const StandingPage = () => {
               </tbody>
             )}
           </table>
+        </div>
+
+        <div>
+          <h1>Information :</h1>
         </div>
       </div>
     </>
