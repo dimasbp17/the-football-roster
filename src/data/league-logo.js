@@ -24,6 +24,14 @@ const league_logo = {
   4394: '/assets/images/italia-b.png',
   4395: '/assets/svg/scottish-championship.svg',
   4396: '/assets/images/inggris-liga-1.png',
+  4397: '/assets/svg/english-league-2.svg',
+  4398: '/assets/images/italia-serie-c.png',
+  4399: '/assets/svg/bundesliga-2.svg',
+  4400: '/assets/svg/laliga-2.svg',
+  4401: '/assets/svg/french-2.svg',
+  4403: '/assets/svg/swedish.webp',
+  4404: '/assets/images/brazil-b.png',
+  4406: '/assets/svg/argentina.svg',
 };
 
 export default league_logo;

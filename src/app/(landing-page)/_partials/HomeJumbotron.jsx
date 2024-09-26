@@ -66,7 +66,7 @@ const HomeJumbotron = () => {
               </div>
             ))}
           </div>
-          <div className="absolute bottom-10 left-10">
+          {/* <div className="absolute bottom-10 left-10">
             <Image
               src={ball_spin}
               alt="Ball Spinner"
@@ -74,7 +74,7 @@ const HomeJumbotron = () => {
               height={1024}
               className="size-10 animate-spin"
             />
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-col items-start justify-center bg-black col-span-full md:col-span-8 gap-y-2">
           <div className="relative w-full h-screen">
@@ -86,7 +86,7 @@ const HomeJumbotron = () => {
               priority
             />
           </div>
-          <div className="absolute flex flex-col px-24 gap-y-5">
+          <div className="absolute flex flex-col px-5 lg:px-24 gap-y-5">
             <span className="text-5xl font-bold">
               Get <span className="text-yellow-500">Football</span> Update
             </span>
