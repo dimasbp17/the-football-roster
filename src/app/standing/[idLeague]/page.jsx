@@ -56,7 +56,7 @@ const StandingPage = () => {
   const TABLE_HEAD = [
     '#',
     'Club',
-    'G',
+    'P',
     'W',
     'D',
     'L',
@@ -182,10 +182,10 @@ const StandingPage = () => {
               </tbody>
             )}
           </table>
-        </div>
-
-        <div>
-          <h1>Information :</h1>
+          <div className="my-5 text-white">
+            <h1 className="font-bold">Information :</h1>
+            <h5>dada</h5>
+          </div>
         </div>
       </div>
     </>
