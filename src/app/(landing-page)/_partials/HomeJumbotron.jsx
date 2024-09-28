@@ -24,11 +24,11 @@ const HomeJumbotron = () => {
       icon: <MdStadium />,
       href: '/clubs',
     },
-    {
-      menu: 'League',
-      icon: <SiPremierleague />,
-      href: '/leagues',
-    },
+    // {
+    //   menu: 'League',
+    //   icon: <SiPremierleague />,
+    //   href: '/leagues',
+    // },
     {
       menu: 'Standing',
       icon: <PiListNumbersFill />,
@@ -94,13 +94,13 @@ const HomeJumbotron = () => {
               Find various information from football around the world
             </span>
 
-            <Button
+            {/* <Button
               size="lg"
               color="yellow"
               className="capitalize rounded-full text-navy"
             >
               Explore
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

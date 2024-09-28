@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Option, Select, Typography } from '@material-tailwind/react';
+import { Card, Typography } from '@material-tailwind/react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import ball from '@/assets/images/ball-spin.png';
@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation';
 import axios from 'axios';
 import Loading from '@/components/Loading';
 import Search from '@/components/Search';
+import Select from 'react-select';
 
 const StandingPage = () => {
   const { idLeague } = useParams();
@@ -22,16 +23,17 @@ const StandingPage = () => {
         const response = await axios.get(
           `https://www.thesportsdb.com/api/v1/json/3/search_all_seasons.php?id=${idLeague}`
         );
-        const availableSeasons = response.data.seasons.map(
-          (season) => season.strSeason
-        );
+        const availableSeasons = response.data.seasons.map((season) => ({
+          value: season.strSeason,
+          label: season.strSeason,
+        }));
         setSeasons(availableSeasons);
       } catch (error) {
         console.error('Error fetching season', error);
       }
     };
     fetchSeasons();
-  });
+  }, [idLeague]);
 
   useEffect(() => {
     const fetchClubStandings = async () => {
@@ -52,9 +54,9 @@ const StandingPage = () => {
   }, [idLeague, selectSeason]);
 
   const TABLE_HEAD = [
-    'Rank',
+    '#',
     'Club',
-    'P',
+    'G',
     'W',
     'D',
     'L',
@@ -67,12 +69,12 @@ const StandingPage = () => {
   return (
     <>
       <div className="w-full p-2">
-        <Card className="flex flex-col px-5 py-10 mb-5 text-white lg:items-center lg:justify-between lg:flex-row bg-navy">
+        <Card className="flex flex-col p-5 mb-5 bg-yellow-500 text-navy lg:items-center lg:justify-between lg:flex-row">
           <h1 className="text-xl font-bold">Club Standings</h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
         </Card>
-        <div className="flex items-end justify-end my-5 text-black w-60">
-          <Select
+        <div className="container mx-auto my-5 text-black w-60">
+          {/* <Select
             label="Select Season"
             className="text-black"
             value={selectSeason}
@@ -86,21 +88,28 @@ const StandingPage = () => {
                 {season}
               </Option>
             ))}
-          </Select>
+          </Select> */}
+          <Select
+            options={seasons}
+            value={seasons.find((season) => season.value === selectSeason)}
+            onChange={(selected) => setSelectSeason(selected.value)}
+            className="text-black"
+            placeholder="Select Season"
+          />
         </div>
-        <div className="overflow-x-auto">
+        <div className="container mx-auto overflow-x-auto">
           <table className="w-full text-left table-auto min-w-max">
             <thead>
               <tr>
                 {TABLE_HEAD.map((head) => (
                   <th
                     key={head}
-                    className="p-4 text-center text-white border-b border-blue-gray-100 bg-navy"
+                    className="p-4 text-center text-black bg-yellow-500 border-b border-blue-gray-100"
                   >
                     <Typography
                       variant="small"
                       color="blue-gray"
-                      className="font-normal leading-none text-white"
+                      className="font-bold leading-none text-black"
                     >
                       {head}
                     </Typography>
@@ -113,10 +122,12 @@ const StandingPage = () => {
             ) : (
               <tbody>
                 {clubStandings && clubStandings.length > 0 ? (
-                  clubStandings.map((club) => (
+                  clubStandings.map((club, index) => (
                     <tr
                       key={club.idStanding}
-                      className="text-center border-b border-black"
+                      className={`text-center border-b border-black ${
+                        index % 2 === 0 ? 'bg-white' : 'bg-gray-200'
+                      }`}
                     >
                       <td className="w-10">{club.intRank}</td>
                       <td className="flex items-center gap-2 p-4">
@@ -137,7 +148,7 @@ const StandingPage = () => {
                       <td>{club.intGoalDifference}</td>
                       {/* <td>{club.strDescription}</td> */}
                       <td className="font-bold">{club.intPoints}</td>
-                      <td>
+                      <td className="p-3">
                         <div className="flex justify-center gap-1">
                           {club.strForm.split('').map((form, index) => {
                             let bgColor = '';

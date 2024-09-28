@@ -48,9 +48,9 @@ const ClubsPage = () => {
 
   return (
     <>
-      <div className="p-2 bg-[#F5F7F8] h-full">
-        <Card className="flex flex-col px-5 py-10 mb-5 text-white lg:items-center lg:justify-between lg:flex-row bg-navy">
-          <h1 className="mb-2 text-xl font-bold lg:mb-0">All Leagues</h1>
+      <div className="h-full p-2 bg-navy">
+        <Card className="flex flex-col p-5 mb-5 bg-yellow-500 text-navy lg:items-center lg:justify-between lg:flex-row">
+          <h1 className="mb-2 text-3xl font-bold lg:mb-0">All Leagues</h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
         </Card>
         {loading ? (
@@ -58,12 +58,12 @@ const ClubsPage = () => {
         ) : (
           <>
             {filteredLeagues.length > 0 ? (
-              <div>
-                <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-4 p-3 bg-[#F5F7F8]">
+              <div className="container mx-auto">
+                <div className="grid w-full grid-cols-1 gap-4 p-3 md:grid-cols-2">
                   {filteredLeagues.slice(0, visibleLeagues).map((league) => (
                     <div key={league.idLeague}>
                       <Link href={`/clubs/${league.strLeague}`}>
-                        <Card className="flex flex-row items-center w-full gap-3 p-3 bg-white border text-navy">
+                        <Button className="flex flex-row items-center w-full gap-3 p-3 bg-white border text-navy">
                           <div>
                             <Image
                               src={league_logo[league.idLeague]}
@@ -82,7 +82,7 @@ const ClubsPage = () => {
                               {league.strLeagueAlternate || '-'}
                             </span>
                           </div>
-                        </Card>
+                        </Button>
                       </Link>
                     </div>
                   ))}
@@ -92,7 +92,7 @@ const ClubsPage = () => {
                   <div className="flex justify-center my-5">
                     <Button
                       size="lg"
-                      className="capitalize bg-navy"
+                      className="capitalize bg-yellow-500 text-navy"
                       onClick={showMoreLeagues}
                     >
                       Show More
