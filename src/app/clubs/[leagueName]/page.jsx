@@ -50,8 +50,8 @@ const LeagueTeams = () => {
   return (
     <>
       <div className="w-full p-2">
-        <Card className="flex flex-col px-5 py-10 mb-5 text-white lg:items-center lg:justify-between lg:flex-row bg-navy">
-          <h1 className="mb-2 text-xl font-bold lg:mb-0">
+        <Card className="flex flex-col px-5 py-5 mb-5 bg-yellow-500 lg:items-center lg:justify-between lg:flex-row text-navy">
+          <h1 className="mb-2 text-2xl font-bold lg:mb-0">
             Team from the {decodedLeagueName}
           </h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
@@ -61,13 +61,13 @@ const LeagueTeams = () => {
         ) : (
           <>
             {filteredTeams.length > 0 ? (
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 font-lato">
+              <div className="container grid grid-cols-1 gap-5 mx-auto md:grid-cols-2 font-lato">
                 {filteredTeams.map((team) => (
                   <Link
                     key={team.idTeam}
                     href={`/clubs/${leagueName}/${team.strTeam}`}
                   >
-                    <Card className="flex flex-row items-center w-full gap-4 p-4 text-black border card-rounded-bot-right bg-blue-gray-50">
+                    <Card className="flex flex-row items-center w-full gap-4 p-4 text-black card-rounded-bot-right bg-blue-gray-50">
                       <div
                         className="absolute bottom-0 right-0 w-5 h-full p-0 rounded-r-lg"
                         style={{ backgroundColor: team.strColour1 }}
@@ -83,6 +83,9 @@ const LeagueTeams = () => {
                       </div>
                       <div className="flex flex-col gap-1">
                         <h1 className="text-xl font-bold ">{team.strTeam}</h1>
+                        <h1 className="text-sm ">
+                          {team.strKeywords || 'No nicknames'}
+                        </h1>
                       </div>
                     </Card>
                   </Link>

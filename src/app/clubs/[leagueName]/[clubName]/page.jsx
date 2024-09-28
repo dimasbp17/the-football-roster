@@ -52,7 +52,7 @@ const ClubDetail = () => {
 
   return (
     <>
-      <div className="overflow-x-hidden">
+      <div className="overflow-x-hidden bg-white">
         {clubs.map((club) => (
           <>
             <section className="w-full">
