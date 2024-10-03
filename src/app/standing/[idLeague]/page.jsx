@@ -3,7 +3,6 @@
 import { Card, Typography } from '@material-tailwind/react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import ball from '@/assets/images/ball-spin.png';
 import { useParams } from 'next/navigation';
 import axios from 'axios';
 import Loading from '@/components/Loading';
