@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import banner from '@/assets/images/stadium-2.jpg';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { IoIosFootball } from 'react-icons/io';
 import { MdStadium } from 'react-icons/md';
