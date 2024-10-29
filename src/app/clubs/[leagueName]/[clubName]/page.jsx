@@ -51,8 +51,11 @@ const ClubDetail = () => {
 
   return (
     <>
-      <div className="overflow-x-hidden bg-white">
-        {clubs.map((club) => (
+      {clubs.map((club, index) => (
+        <div
+          key={index}
+          className="overflow-x-hidden bg-red-500 bg-opacity-40"
+        >
           <>
             <section className="w-full">
               <Image
@@ -121,8 +124,8 @@ const ClubDetail = () => {
               </div>
             </div>
           </>
-        ))}
-      </div>
+        </div>
+      ))}
     </>
   );
 };

@@ -49,7 +49,7 @@ const LeagueTeams = () => {
 
   return (
     <>
-      <div className="w-full p-2">
+      <div className="w-full p-2 bg-navy">
         <Card className="flex flex-col px-5 py-5 mb-5 bg-yellow-500 lg:items-center lg:justify-between lg:flex-row text-navy">
           <h1 className="mb-2 text-2xl font-bold lg:mb-0">
             Team from the {decodedLeagueName}

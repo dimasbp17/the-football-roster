@@ -48,7 +48,7 @@ const Standing = () => {
 
   return (
     <>
-      <div className="h-full p-2">
+      <div className="h-full p-2 bg-navy">
         <Card className="flex flex-col p-5 mb-5 bg-yellow-500 text-navy lg:items-center lg:justify-between lg:flex-row">
           <h1 className="text-xl font-bold">All Leagues</h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
