@@ -69,7 +69,7 @@ const StandingPage = () => {
   ];
   return (
     <>
-      <div className="w-full p-2">
+      <div className="w-full p-2 bg-navy">
         <Card className="flex flex-col p-5 mb-5 bg-yellow-500 text-navy lg:items-center lg:justify-between lg:flex-row">
           <h1 className="text-xl font-bold">Club Standings</h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
@@ -154,16 +154,21 @@ const StandingPage = () => {
 
                               return (
                                 <>
-                                  <span
-                                    key={index}
-                                    className={`size-6 flex items-center justify-center text-white font-medium ${bgColor} rounded-md ${
-                                      index === 4
-                                        ? 'border-b-4 border-blue-500'
-                                        : ''
-                                    }`}
-                                  >
-                                    {form}
-                                  </span>
+                                  <div className="flex flex-col">
+                                    <span
+                                      key={index}
+                                      className={`size-6 flex items-center justify-center text-white font-medium ${bgColor} rounded-md `}
+                                    >
+                                      <span>{form}</span>
+                                    </span>
+                                    <span
+                                      className={`${
+                                        index === 4
+                                          ? 'border-b-2  border-blue-500 mt-1'
+                                          : ''
+                                      }`}
+                                    ></span>
+                                  </div>
                                 </>
                               );
                             })}
