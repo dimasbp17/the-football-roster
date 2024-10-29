@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Button, Card } from '@material-tailwind/react';
-import Image from 'next/image';
 import Loading from '@/components/Loading';
-import Link from 'next/link';
 import Search from '@/components/Search';
 import league_logo from '@/data/league-logo';
+import { Button, Card } from '@material-tailwind/react';
+import axios from 'axios';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const Standing = () => {
   const [leagues, setLeagues] = useState([]);

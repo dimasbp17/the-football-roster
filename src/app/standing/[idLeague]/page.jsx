@@ -1,16 +1,18 @@
 'use client';
 
-import { Card, Typography } from '@material-tailwind/react';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
-import axios from 'axios';
 import Loading from '@/components/Loading';
 import Search from '@/components/Search';
+import { Button, Card, Typography } from '@material-tailwind/react';
+import axios from 'axios';
+import Image from 'next/image';
+import { useParams, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { IoArrowBack } from 'react-icons/io5';
 import Select from 'react-select';
 
 const StandingPage = () => {
   const { idLeague } = useParams();
+  const router = useRouter();
   const [clubStandings, setClubStandings] = useState([]);
   const [seasons, setSeasons] = useState([]);
   const [selectSeason, setSelectSeason] = useState('2024-2025');
@@ -72,53 +74,45 @@ const StandingPage = () => {
           <h1 className="text-xl font-bold">Club Standings</h1>
           <Search onSearch={(value) => setSearchQuery(value)} />
         </Card>
-        <div className="container mx-auto my-5 text-black w-60">
-          {/* <Select
-            label="Select Season"
-            className="text-black"
-            value={selectSeason}
-            onChange={(e) => setSelectSeason(e)}
+        <div className="container flex justify-between mx-auto my-5 text-black">
+          <Button
+            className="flex items-center gap-2 capitalize bg-yellow-500 text-navy"
+            onClick={() => router.back()}
           >
-            {seasons.map((season) => (
-              <Option
-                key={season}
-                value={season}
-              >
-                {season}
-              </Option>
-            ))}
-          </Select> */}
+            <IoArrowBack size={15} /> Back
+          </Button>
           <Select
             options={seasons}
             value={seasons.find((season) => season.value === selectSeason)}
             onChange={(selected) => setSelectSeason(selected.value)}
-            className="text-black"
+            className="text-black w-60"
             placeholder="Select Season"
           />
         </div>
+
         <div className="container mx-auto overflow-x-auto">
-          <table className="w-full text-left table-auto min-w-max">
-            <thead>
-              <tr>
-                {TABLE_HEAD.map((head) => (
-                  <th
-                    key={head}
-                    className="p-4 text-center text-black bg-yellow-500 border-b border-blue-gray-100"
-                  >
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-bold leading-none text-black"
+          {loading ? (
+            <Loading />
+          ) : (
+            <table className="w-full text-left table-auto min-w-max">
+              <thead>
+                <tr>
+                  {TABLE_HEAD.map((head) => (
+                    <th
+                      key={head}
+                      className="p-4 text-center text-black bg-yellow-500 border-b border-blue-gray-100"
                     >
-                      {head}
-                    </Typography>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            {loading ? (
-              <Loading />
-            ) : (
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-bold leading-none text-black"
+                      >
+                        {head}
+                      </Typography>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
               <tbody>
                 {clubStandings && clubStandings.length > 0 ? (
                   clubStandings.map((club, index) => (
@@ -149,21 +143,30 @@ const StandingPage = () => {
                       <td className="font-bold">{club.intPoints}</td>
                       <td className="p-3">
                         <div className="flex justify-center gap-1">
-                          {club.strForm.split('').map((form, index) => {
-                            let bgColor = '';
-                            if (form === 'W') bgColor = 'bg-green-500';
-                            else if (form === 'D') bgColor = 'bg-gray-500';
-                            else if (form === 'L') bgColor = 'bg-red-500';
+                          {club.strForm
+                            .split('')
+                            .reverse()
+                            .map((form, index) => {
+                              let bgColor = '';
+                              if (form === 'W') bgColor = 'bg-green-500';
+                              else if (form === 'D') bgColor = 'bg-gray-500';
+                              else if (form === 'L') bgColor = 'bg-red-500';
 
-                            return (
-                              <span
-                                key={index}
-                                className={`size-6 flex items-center justify-center text-white font-medium ${bgColor} rounded-md`}
-                              >
-                                {form}
-                              </span>
-                            );
-                          })}
+                              return (
+                                <>
+                                  <span
+                                    key={index}
+                                    className={`size-6 flex items-center justify-center text-white font-medium ${bgColor} rounded-md ${
+                                      index === 4
+                                        ? 'border-b-4 border-blue-500'
+                                        : ''
+                                    }`}
+                                  >
+                                    {form}
+                                  </span>
+                                </>
+                              );
+                            })}
                         </div>
                       </td>
                     </tr>
@@ -179,8 +182,9 @@ const StandingPage = () => {
                   </tr>
                 )}
               </tbody>
-            )}
-          </table>
+            </table>
+          )}
+
           <div className="my-5 text-white">
             <h1 className="font-bold">Information :</h1>
             <h5>dada</h5>
