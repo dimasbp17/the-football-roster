@@ -17,6 +17,7 @@ const StandingPage = () => {
   const [seasons, setSeasons] = useState([]);
   const [selectSeason, setSelectSeason] = useState('2024-2025');
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchSeasons = async () => {
@@ -53,6 +54,10 @@ const StandingPage = () => {
       fetchClubStandings();
     }
   }, [idLeague, selectSeason]);
+
+  const filteredStandings = clubStandings.filter((clubStanding) =>
+    clubStanding.strTeam.toLowerCase().includes(searchQuery.toLocaleLowerCase())
+  );
 
   const TABLE_HEAD = [
     '#',
@@ -114,8 +119,8 @@ const StandingPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {clubStandings && clubStandings.length > 0 ? (
-                  clubStandings.map((club, index) => (
+                {filteredStandings && filteredStandings.length > 0 ? (
+                  filteredStandings.map((club, index) => (
                     <tr
                       key={club.idStanding}
                       className={`text-center border-b border-black ${

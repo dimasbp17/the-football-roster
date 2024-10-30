@@ -54,7 +54,7 @@ const ClubDetail = () => {
       {clubs.map((club, index) => (
         <div
           key={index}
-          className="overflow-x-hidden bg-red-500 bg-opacity-40"
+          className="overflow-x-hidden bg-white"
         >
           <>
             <section className="w-full">

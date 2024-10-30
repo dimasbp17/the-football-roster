@@ -1,20 +1,22 @@
 'use client';
 
 import Search from '@/components/Search';
-import { Card } from '@material-tailwind/react';
+import { Button, Card } from '@material-tailwind/react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import axios from 'axios';
 import Loading from '@/components/Loading';
 import './style.css';
 import Link from 'next/link';
+import { IoArrowBack } from 'react-icons/io5';
 
 const LeagueTeams = () => {
   const { leagueName } = useParams();
   const [teams, setTeams] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -60,6 +62,12 @@ const LeagueTeams = () => {
           <Loading />
         ) : (
           <>
+            <Button
+              className="flex items-center gap-2 mb-5 capitalize bg-yellow-500 ml-14 text-navy"
+              onClick={() => router.back()}
+            >
+              <IoArrowBack size={15} /> Back
+            </Button>
             {filteredTeams.length > 0 ? (
               <div className="container grid grid-cols-1 gap-5 mx-auto md:grid-cols-2 font-lato">
                 {filteredTeams.map((team) => (

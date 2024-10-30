@@ -7,13 +7,16 @@ import { Button, Card } from '@material-tailwind/react';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { IoArrowBack } from 'react-icons/io5';
 
 const Standing = () => {
   const [leagues, setLeagues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [visibleLeagues, setVisibleLeagues] = useState(10);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchLeagues = async () => {
@@ -59,6 +62,12 @@ const Standing = () => {
           <>
             {filteredLeagues.length > 0 ? (
               <div className="container mx-auto">
+                <Button
+                  className="flex items-center gap-2 mb-5 capitalize bg-yellow-500 text-navy"
+                  onClick={() => router.back()}
+                >
+                  <IoArrowBack size={15} /> Back
+                </Button>
                 <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-2 ">
                   {filteredLeagues.slice(0, visibleLeagues).map((league) => (
                     <div key={league.idLeague}>
