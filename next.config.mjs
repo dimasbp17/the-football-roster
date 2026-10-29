@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['www.thesportsdb.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'www.thesportsdb.com' },
+      { protocol: 'https', hostname: 'r2.thesportsdb.com' },
+    ],
   },
 };
 

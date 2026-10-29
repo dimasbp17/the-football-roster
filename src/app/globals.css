@@ -2,4 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-pitch-950 text-white antialiased;
+    background-image: radial-gradient(
+        60rem 30rem at 85% -10%,
+        rgba(198, 255, 61, 0.08),
+        transparent 60%
+      ),
+      radial-gradient(
+        50rem 30rem at -10% 10%,
+        rgba(16, 185, 129, 0.08),
+        transparent 60%
+      );
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-volt text-pitch-950;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border bg-white/[0.03] border-white/10 backdrop-blur-md;
+  }
+
+  .card-hover {
+    @apply transition duration-300 hover:-translate-y-1 hover:border-volt/50 hover:bg-white/[0.06] hover:shadow-[0_10px_40px_-10px_rgba(198,255,61,0.25)];
+  }
+
+  .btn-volt {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold tracking-wide uppercase transition rounded-full bg-volt text-pitch-950 hover:bg-volt-400 hover:shadow-[0_0_30px_rgba(198,255,61,0.45)];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold tracking-wide uppercase transition border rounded-full border-white/20 hover:border-volt hover:text-volt;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.25em] uppercase text-volt;
+  }
+
+  .text-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-volt via-lime-300 to-emerald-400;
+  }
+}
+
+@layer utilities {
+  /* Garis lapangan samar untuk latar dekoratif */
+  .pitch-lines {
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.04) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
